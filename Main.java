@@ -1,10 +1,8 @@
 import java.awt.FlowLayout;
 import java.awt.BorderLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
 
 
 public class Main {
@@ -21,14 +19,23 @@ public class Main {
         JLabel lblPeso = new JLabel("Peso");
         JLabel lblAltura = new JLabel("Altura");
         JButton btnCalcular = new JButton();
-        JTextField altura = new JTextField(10);
-        JTextField peso = new JTextField(10);
+        JTextField txtfAltura = new JTextField(10);
+        JTextField txtfPeso = new JTextField(10);
+        btnCalcular.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Pessoa pessoa = new Pessoa();
+                pessoa.peso = Float.parseFloat(txtfPeso.getText());
+                pessoa.altura = Float.parseFloat(txtfAltura.getText());
+                JOptionPane.showMessageDialog(frame, pessoa.CalcularIMC());
+            }
+        });
         btnCalcular.setText("Calcular");
         panTop.add(lblTitulo);
         panMiddle.add(lblAltura);
-        panMiddle.add(altura);
+        panMiddle.add(txtfAltura);
         panMiddle.add(lblPeso);
-        panMiddle.add(peso);
+        panMiddle.add(txtfPeso);
         panBottom.add(btnCalcular);
         panOuter.add(panTop,BorderLayout.NORTH);
         panOuter.add(panMiddle,BorderLayout.CENTER);
